@@ -1,7 +1,9 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
+
 body {
     min-height: 100vh;
     background: url('laptop.jpg');
@@ -9,12 +11,15 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-y: auto; /* Allow vertical scrolling */
 }
+
 nav {
     background-color: #484742; /* Updated navbar color */
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
     height: 60px; /* Increased height of the navbar */
 }
+
 nav ul {
     width: 100%;
     list-style: none;
@@ -23,9 +28,11 @@ nav ul {
     align-items: center;
     height: 100%;
 }
+
 nav li {
     height: 100%; /* Match height to navbar height */
 }
+
 nav a {
     height: 100%;
     padding: 0 30px;
@@ -33,14 +40,26 @@ nav a {
     display: flex;
     align-items: center;
     color: white; /* Text color white */
+    transition: color 0.3s; /* Smooth color transition */
 }
+
 nav a:hover {
     background-color: #f0f0f0;
     color: black; /* Text color black on hover */
 }
+
+nav .name {
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    color: white; /* Text color white */
+    font-size: 16px; /* Adjust font size as needed */
+}
+
 nav li:first-child {
     margin-right: auto;
 }
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -56,15 +75,95 @@ nav li:first-child {
     align-items: flex-start;
     justify-content: flex-start;
 }
+
 .sidebar li {
     width: 100%;
 }
+
 .sidebar a {
     width: 100%;
 }
+
 .menu-button {
     display: none;
 }
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0; /* Initially hide content */
+    animation: fadeIn 1s forwards; /* Animation to fade in */
+}
+
+.image-container {
+    width: 300px; /* Set width to be larger */
+    height: 300px; /* Set height to be larger */
+    overflow: hidden; /* Hide overflow */
+    margin-left: 100px; /* Adjust margin as needed */
+    margin-top: 100px; /* Adjust margin as needed */
+    margin-right: 50px; /* Adjust margin as needed */
+    transform: translateX(-100px); /* Initial position off-screen */
+    animation: slideInRight 1s forwards, scaleIn 1s forwards; /* Animation for slide in and scale */
+}
+
+.image-container img {
+    width: 100%; /* Make the image fill its container */
+    height: 100%; /* Make the image fill its container */
+    object-fit: cover; /* Cover the container */
+}
+
+.text-container {
+    flex: 1;
+    color: #5f95ba; /* Text color */
+    opacity: 0; /* Initially hide text */
+    animation: slideInLeft 1s forwards, fadeIn 1s forwards; /* Animation for slide in and fade in */
+}
+
+.text-container p {
+    margin-bottom: 20px; /* Add some spacing between paragraphs */
+    line-height: 1.6; /* Adjust line height for readability */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 @media(max-width: 800px) {
     .hideOnMobile {
         display: none;
@@ -73,6 +172,7 @@ nav li:first-child {
         display: block;
     }
 }
+
 @media(max-width: 400px) {
     .sidebar {
         width: 100%;
